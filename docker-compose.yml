@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:15rc1-bullseye
+    container_name: postgres
+    restart: always
+    network_mode: "host"
+    environment:
+      TZ: Asia/Shanghai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cjs
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - /data/compose/postgresql/data:/var/lib/postgresql/data
+  g8ink:
+    image: cjs520/g8ink
+    container_name: g8ink
+    restart: always
+    network_mode: "host"
+    ports:
+    - 8080:8080
